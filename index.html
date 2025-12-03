@@ -1,0 +1,312 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Конструктор анимированных карточек для GitVerse</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1><i class="fas fa-palette"></i> Конструктор анимированных карточек для GitVerse</h1>
+            <p class="subtitle">Создайте SVG с анимациями для вашего README.md. Скачайте файл и загрузите в репозиторий.</p>
+            <!-- ПЕРЕКЛЮЧАТЕЛЬ ТЕМ САЙТА - БУДЕТ ЗДЕСЬ -->
+            <div id="themeSwitcherContainer">
+                <div class="compact-theme-switcher">
+                    <button id="toggleThemeSwitcher" class="compact-theme-btn">
+                        <i class="fas fa-palette"></i>
+                        <span>Сменить тему сайта</span>
+                        <i class="fas fa-chevron-down"></i>
+                    </button>
+                    
+                    <div class="theme-buttons-container collapsed">
+                        <div class="theme-switcher-buttons">
+                            <!-- Кнопки тем будут добавлены через JS -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </header>
+
+        <main>
+            <div class="workspace">
+                <section class="panel config-panel">
+                    <h2><i class="fas fa-sliders-h"></i> Настройки</h2>
+                    
+                    <!-- Кнопки управления ВСЕМИ НАСТРОЙКАМИ -->
+                    <div class="form-group">
+                        <div class="section-controls">
+                            <button id="collapseAllSectionsBtn" class="section-control-btn">
+                                <i class="fas fa-chevron-up"></i> Свернуть все настройки
+                            </button>
+                            <button id="expandAllSectionsBtn" class="section-control-btn">
+                                <i class="fas fa-chevron-down"></i> Развернуть все настройки
+                            </button>
+                        </div>
+                    </div>
+                    
+                    <!-- 1. Основная информация -->
+                    <div class="form-group collapsible-section">
+                        <div class="section-header">
+                            <h3><i class="fas fa-user"></i> Основная информация</h3>
+                            <span class="collapse-toggle">−</span>
+                        </div>
+                        <div class="section-content">
+                            <label for="username"><i class="fas fa-user"></i> Ваш никнейм</label>
+                            <input type="text" id="username" value="">
+                            
+                            <label for="bio"><i class="fas fa-quote-left"></i> Описание</label>
+                            <input type="text" id="bio" value="">
+                        </div>
+                    </div>
+                    
+                    <!-- 2. Эмодзи на карточке -->
+                    <div class="form-group collapsible-section">
+                        <div class="section-header">
+                            <h3><i class="fas fa-icons"></i> Эмодзи на карточке</h3>
+                            <span class="collapse-toggle">−</span>
+                        </div>
+                        <div class="section-content">
+                            <!-- Три поля для эмодзи -->
+                            <div class="emoji-selector">
+                                <div class="emoji-input-group">
+                                    <label>Первый кружок:</label>
+                                    <input type="text" id="emoji1" class="emoji-input" value="🚀" maxlength="2">
+                                </div>
+                                <div class="emoji-input-group">
+                                    <label>Второй кружок:</label>
+                                    <input type="text" id="emoji2" class="emoji-input" value="💻" maxlength="2">
+                                </div>
+                                <div class="emoji-input-group">
+                                    <label>Третий кружок:</label>
+                                    <input type="text" id="emoji3" class="emoji-input" value="⚡" maxlength="2">
+                                </div>
+                            </div>
+                            
+                            <!-- Кнопки управления КАТЕГОРИЯМИ ЭМОДЗИ -->
+                            <div class="emoji-controls">
+                                <button id="collapseAllEmojiBtn" class="collapse-all-btn">
+                                    <i class="fas fa-chevron-up"></i> Свернуть все категории
+                                </button>
+                                <button id="expandAllEmojiBtn" class="expand-all-btn">
+                                    <i class="fas fa-chevron-down"></i> Развернуть все категории
+                                </button>
+                            </div>
+                            
+                            <!-- Категории эмодзи -->
+                            <div class="emoji-buttons">
+                                <!-- 💻 IT и Технологии -->
+                                <div class="category-header">
+                                    <div class="category-label">
+                                        <i class="fas fa-laptop-code"></i> IT
+                                        <span class="collapse-toggle">−</span>
+                                    </div>
+                                    <div class="emoji-group">
+                                        <button class="emoji-btn" data-emoji="🚀" title="Разработка">🚀</button>
+                                        <button class="emoji-btn" data-emoji="💻" title="Программирование">💻</button>
+                                        <button class="emoji-btn" data-emoji="⚡" title="Технологии">⚡</button>
+                                        <button class="emoji-btn" data-emoji="📱" title="Мобильные">📱</button>
+                                        <button class="emoji-btn" data-emoji="🌐" title="Веб">🌐</button>
+                                        <button class="emoji-btn" data-emoji="🔧" title="Инструменты">🔧</button>
+                                        <button class="emoji-btn" data-emoji="🤖" title="ИИ">🤖</button>
+                                        <button class="emoji-btn" data-emoji="🎮" title="Гейминг">🎮</button>
+                                        <button class="emoji-btn" data-emoji="💾" title="Дискета">💾</button>
+                                        <button class="emoji-btn" data-emoji="🔒" title="Безопасность">🔒</button>
+                                    </div>
+                                </div>
+
+                                <!-- ⚽ Футбол и Спорт -->
+                                <div class="category-header">
+                                    <div class="category-label">
+                                        <i class="fas fa-futbol"></i> Спорт
+                                        <span class="collapse-toggle">−</span>
+                                    </div>
+                                    <div class="emoji-group">
+                                        <button class="emoji-btn" data-emoji="⚽" title="Футбол">⚽</button>
+                                        <button class="emoji-btn" data-emoji="🏀" title="Баскетбол">🏀</button>
+                                        <button class="emoji-btn" data-emoji="🎾" title="Теннис">🎾</button>
+                                        <button class="emoji-btn" data-emoji="🏈" title="Американский футбол">🏈</button>
+                                        <button class="emoji-btn" data-emoji="⚾" title="Бейсбол">⚾</button>
+                                        <button class="emoji-btn" data-emoji="🥊" title="Бокс">🥊</button>
+                                        <button class="emoji-btn" data-emoji="🏃" title="Бег">🏃</button>
+                                        <button class="emoji-btn" data-emoji="🚴" title="Велоспорт">🚴</button>
+                                        <button class="emoji-btn" data-emoji="🥇" title="Золото">🥇</button>
+                                        <button class="emoji-btn" data-emoji="🏆" title="Кубок">🏆</button>
+                                    </div>
+                                </div>
+
+                                <!-- 🎨 Рисование и Творчество -->
+                                <div class="category-header">
+                                    <div class="category-label">
+                                        <i class="fas fa-paint-brush"></i> Творчество
+                                        <span class="collapse-toggle">−</span>
+                                    </div>
+                                    <div class="emoji-group">
+                                        <button class="emoji-btn" data-emoji="🎨" title="Искусство">🎨</button>
+                                        <button class="emoji-btn" data-emoji="✏️" title="Рисование">✏️</button>
+                                        <button class="emoji-btn" data-emoji="🖌️" title="Кисть">🖌️</button>
+                                        <button class="emoji-btn" data-emoji="🎭" title="Театр">🎭</button>
+                                        <button class="emoji-btn" data-emoji="📸" title="Фотография">📸</button>
+                                        <button class="emoji-btn" data-emoji="🎵" title="Музыка">🎵</button>
+                                        <button class="emoji-btn" data-emoji="🎬" title="Кино">🎬</button>
+                                        <button class="emoji-btn" data-emoji="📚" title="Книги">📚</button>
+                                        <button class="emoji-btn" data-emoji="🧵" title="Рукоделие">🧵</button>
+                                        <button class="emoji-btn" data-emoji="🛠️" title="Ремесло">🛠️</button>
+                                    </div>
+                                </div>
+
+                                <!-- 🎃 Хэллоуин -->
+                                <div class="category-header">
+                                    <div class="category-label">
+                                        <i class="fas fa-ghost"></i> Хэллоуин
+                                        <span class="collapse-toggle">−</span>
+                                    </div>
+                                    <div class="emoji-group">
+                                        <button class="emoji-btn" data-emoji="🎃" title="Тыква">🎃</button>
+                                        <button class="emoji-btn" data-emoji="👻" title="Призрак">👻</button>
+                                        <button class="emoji-btn" data-emoji="🕷️" title="Паук">🕷️</button>
+                                        <button class="emoji-btn" data-emoji="🕸️" title="Паутина">🕸️</button>
+                                        <button class="emoji-btn" data-emoji="💀" title="Череп">💀</button>
+                                        <button class="emoji-btn" data-emoji="🦇" title="Летучая мышь">🦇</button>
+                                        <button class="emoji-btn" data-emoji="🧙" title="Ведьма">🧙</button>
+                                        <button class="emoji-btn" data-emoji="🔮" title="Магический шар">🔮</button>
+                                        <button class="emoji-btn" data-emoji="🍬" title="Конфеты">🍬</button>
+                                        <button class="emoji-btn" data-emoji="🕯️" title="Свеча">🕯️</button>
+                                    </div>
+                                </div>
+
+                                <!-- 🎄 Новый Год -->
+                                <div class="category-header">
+                                    <div class="category-label">
+                                        <i class="fas fa-tree"></i> Новый Год
+                                        <span class="collapse-toggle">−</span>
+                                    </div>
+                                    <div class="emoji-group">
+                                        <button class="emoji-btn" data-emoji="🎄" title="Ёлка">🎄</button>
+                                        <button class="emoji-btn" data-emoji="🎅" title="Санта">🎅</button>
+                                        <button class="emoji-btn" data-emoji="🦌" title="Олень">🦌</button>
+                                        <button class="emoji-btn" data-emoji="❄️" title="Снежинка">❄️</button>
+                                        <button class="emoji-btn" data-emoji="☃️" title="Снеговик">☃️</button>
+                                        <button class="emoji-btn" data-emoji="🎁" title="Подарок">🎁</button>
+                                        <button class="emoji-btn" data-emoji="🔔" title="Колокольчик">🔔</button>
+                                        <button class="emoji-btn" data-emoji="🌟" title="Звезда">🌟</button>
+                                        <button class="emoji-btn" data-emoji="✨" title="Блеск">✨</button>
+                                        <button class="emoji-btn" data-emoji="🎆" title="Фейерверк">🎆</button>
+                                    </div>
+                                </div>
+
+                                <!-- ❤️ Праздники -->
+                                <div class="category-header">
+                                    <div class="category-label">
+                                        <i class="fas fa-heart"></i> Праздники
+                                        <span class="collapse-toggle">−</span>
+                                    </div>
+                                    <div class="emoji-group">
+                                        <button class="emoji-btn" data-emoji="❤️" title="День влюбленных">❤️</button>
+                                        <button class="emoji-btn" data-emoji="🐰" title="Пасха">🐰</button>
+                                        <button class="emoji-btn" data-emoji="🥚" title="Пасхальное яйцо">🥚</button>
+                                        <button class="emoji-btn" data-emoji="🍀" title="День святого Патрика">🍀</button>
+                                        <button class="emoji-btn" data-emoji="🦃" title="День благодарения">🦃</button>
+                                        <button class="emoji-btn" data-emoji="🎂" title="День рождения">🎂</button>
+                                        <button class="emoji-btn" data-emoji="🎈" title="Воздушный шар">🎈</button>
+                                        <button class="emoji-btn" data-emoji="🎉" title="Праздник">🎉</button>
+                                        <button class="emoji-btn" data-emoji="🥳" title="Тусовка">🥳</button>
+                                        <button class="emoji-btn" data-emoji="🍾" title="Шампанское">🍾</button>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <p style="color: var(--text-secondary); font-size: 0.85rem; margin-top: 8px;">
+                                <i class="fas fa-info-circle"></i> Введите эмодзи или символы (макс. 2 символа)
+                            </p>
+                        </div>
+                    </div>
+                    
+                    <!-- 4. Тема карточки -->
+                    <div class="form-group collapsible-section">
+                        <div class="section-header">
+                            <h3><i class="fas fa-brush"></i> Тема карточки</h3>
+                            <span class="collapse-toggle">−</span>
+                        </div>
+                        <div class="section-content">
+                            <div class="theme-selector" id="themeSelector"></div>
+                        </div>
+                    </div>
+                    
+                    <!-- Кнопка загрузки -->
+                    <div class="action-buttons">
+                        <button id="downloadBtn" class="action-btn download-btn">
+                            <i class="fas fa-download"></i> Скачать SVG
+                        </button>
+                    </div>
+                    
+                    <!-- Инструкция -->
+                    <div class="instructions">
+                        <h3><i class="fas fa-info-circle"></i> Как использовать скачанный файл?</h3>
+                        <ol>
+                            <li>Скачайте SVG файл кнопкой выше</li>
+                            <li>Загрузите его в корень вашего репозитория на GitVerse</li>
+                            <li>Вставьте в <code>README.md</code> код: <br><code>![Моя карточка](./gitverse-card.svg)</code></li>
+                        </ol>
+                        <p style="color: var(--accent);">
+                            <i class="fas fa-lightbulb"></i> GitVerse не поддерживает встроенные SVG, поэтому нужен отдельный файл.
+                        </p>
+                    </div>
+                </section>
+
+                <section class="panel preview-panel">
+                    <h2><i class="fas fa-eye"></i> Предпросмотр</h2>
+                    <div class="preview-container" id="previewContainer">
+                        <p>Карточка появится здесь после генерации...</p>
+                    </div>
+
+                    <h2><i class="fas fa-code"></i> Код для вставки в README.md</h2>
+                    <div class="code-container">
+                        <div class="code-header">
+                            <span>Скопируйте этот код для вставки SVG в Markdown</span>
+                            <button id="copyBtn" class="copy-btn"><i class="far fa-copy"></i> Копировать</button>
+                        </div>
+                        <pre id="generatedCode" class="generated-code"><code><!-- Здесь появится код --></code></pre>
+                    </div>
+                </section>
+            </div>
+        </main>
+
+        <footer>
+            <p>Создано для сообщества GitVerse • Работает полностью в браузере</p>
+        </footer>
+    </div>
+
+    <!-- Модальное окно с инструкцией -->
+    <div id="instructionModal" class="modal-overlay">
+        <div class="modal">
+            <div class="modal-header">
+                <h2><i class="fas fa-graduation-cap"></i> Как добавить карточку в GitVerse</h2>
+                <button class="close-btn" id="closeModalBtn">&times;</button>
+            </div>
+            <div class="modal-content">
+                <p><strong>Шаг 1:</strong> Скачанный файл <code>gitverse-card.svg</code> загрузите в корень вашего репозитория на GitVerse.</p>
+                <p><strong>Шаг 2:</strong> В файл <code>README.md</code> добавьте эту строку:</p>
+                <pre><code>![Моя анимированная карточка](./gitverse-card.svg)</code></pre>
+                <div class="modal-checkbox">
+                    <input type="checkbox" id="dontShowAgain">
+                    <label for="dontShowAgain">Больше не показывать эту подсказку</label>
+                </div>
+                <button id="modalOkBtn" class="modal-ok-btn">
+                    Понятно, спасибо!
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <div id="checkmarkOverlay" class="checkmark-overlay"></div>
+    <div id="customCheckmark" class="custom-checkmark">
+        <div class="checkmark-emoji">✅</div>
+        <div class="checkmark-text">Скачано успешно!</div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>

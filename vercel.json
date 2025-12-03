@@ -1,0 +1,13 @@
+{
+  "functions": {
+    "api/streak.js": {
+      "maxDuration": 10
+    }
+  },
+  "rewrites": [
+    {
+      "source": "/api/streak",
+      "destination": "/api/streak.js"
+    }
+  ]
+}

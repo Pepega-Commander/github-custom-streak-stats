@@ -26,7 +26,7 @@ function generateSVG(data, options = {}) {
       <rect width="400" height="170" fill="${bgStyle}" ${borderStyle} rx="4"/>
       
       <text x="20" y="30" font-family="Arial, sans-serif" font-size="16" font-weight="bold" fill="${theme.text || '#24292e'}">
-        GitHub Contribution Streak
+        GitVerse Contribution Streak
       </text>
       
       <g transform="translate(20, 60)">
